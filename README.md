@@ -1,6 +1,6 @@
 # whatsapp_dm
 
-A new Flutter application foe sending whatsapp message without saving the number.
+A new Flutter application for sending whatsapp message without saving the number.
 
 ## Getting Started
 
