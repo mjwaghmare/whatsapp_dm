@@ -180,14 +180,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               const SizedBox(height: 30),
+              const Divider(),
               Center(
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.4,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Constant.whatsappGreen,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(4),
                       ),
                     ),
                     onPressed: () {
@@ -197,8 +198,21 @@ class _MyHomePageState extends State<MyHomePage> {
                         wpMessage.text.toString(),
                       );
                     },
-                    child: const Text(
-                      'Send Message',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const [
+                        FaIcon(
+                          FontAwesomeIcons.whatsapp,
+                        ),
+                        SizedBox(
+                          width: 10.0,
+                        ),
+                        Expanded(
+                          child: Text(
+                            'Send Message',
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
