@@ -7,6 +7,7 @@ class Constant {
   static Color lightBlue = const Color(0xff80b7f5);
   static Color silver = const Color(0xffB7B7B7);
   static Color whatsappGreen = const Color(0xff25D366);
+  static Color white = const Color(0xffF2F2F2);
 
   //Fonts
   static String poppins = 'Poppins';

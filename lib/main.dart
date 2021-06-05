@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const Text(
                 'Send whatsapp messages without saving the number',
                 style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
               ),
               Container(
                 height: 60,
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
@@ -167,7 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
                         wpMessage.text = CustomData.customMessages[i].toString();
                       },
                       child: Chip(
-                        label: Text(CustomData.customMessages[i]),
+                        label: Text(
+                          CustomData.customMessages[i],
+                          style: TextStyle(color: Constant.black, fontWeight: FontWeight.w600),
+                        ),
+                        backgroundColor: Constant.whatsappGreen.withOpacity(0.8),
                       ),
                     )
                   }
@@ -175,16 +181,26 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 30),
               Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Constant.whatsappGreen),
-                  onPressed: () {
-                    launchWhatsApp(
-                      _countryCode,
-                      wpNumber.text.trim().toString(),
-                      wpMessage.text.toString(),
-                    );
-                  },
-                  child: const Text('Send'),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Constant.whatsappGreen,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    onPressed: () {
+                      launchWhatsApp(
+                        _countryCode,
+                        wpNumber.text.trim().toString(),
+                        wpMessage.text.toString(),
+                      );
+                    },
+                    child: const Text(
+                      'Send Message',
+                    ),
+                  ),
                 ),
               )
             ],
