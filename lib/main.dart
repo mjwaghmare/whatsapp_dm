@@ -123,7 +123,6 @@ class _MyHomePageState extends State<MyHomePage> {
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                           border: const OutlineInputBorder(
-                            borderSide: BorderSide.none,
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
@@ -148,7 +147,6 @@ class _MyHomePageState extends State<MyHomePage> {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                     border: const OutlineInputBorder(
-                      borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
