@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       localizationsDelegates: const [CountryLocalizations.delegate],
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue, brightness: Brightness.light),
+      title: 'WhatsApp DM',
+      theme: ThemeData(accentColor: const Color(0xff25D366), brightness: Brightness.light),
       home: MyHomePage(),
     );
   }
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Constant.black,
+        backgroundColor: Constant.whatsappGreen.withOpacity(0.8),
         centerTitle: true,
         title: const Text('WhatsApp DM '),
       ),
@@ -102,23 +102,33 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Expanded(
                       flex: 2,
-                      child: Container(
-                          padding: const EdgeInsets.only(top: 20),
-                          alignment: Alignment.bottomCenter,
-                          child: TextField(
-                            maxLength: 10,
-                            controller: wpNumber,
-                            cursorColor: Constant.black,
-                            keyboardType: TextInputType.phone,
-                            decoration: InputDecoration(
-                              border: const OutlineInputBorder(borderSide: BorderSide.none),
-                              hintText: '0123456789',
-                              prefixIcon: FaIcon(
-                                FontAwesomeIcons.whatsapp,
-                                color: Constant.whatsappGreen,
-                              ),
+                      child: TextField(
+                        maxLength: 10,
+                        controller: wpNumber,
+                        cursorColor: Constant.black,
+                        keyboardType: TextInputType.phone,
+                        decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.only(top: 8.0),
+                          hintText: '0123456789',
+                          prefixIcon: Padding(
+                            padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                            child: FaIcon(
+                              FontAwesomeIcons.whatsapp,
+                              color: Constant.whatsappGreen,
                             ),
-                          )),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Constant.whatsappGreen, width: 2.0),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          border: const OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -131,8 +141,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   cursorColor: Constant.black,
                   keyboardType: TextInputType.multiline,
                   maxLines: 4,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Constant.whatsappGreen, width: 2.0),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
