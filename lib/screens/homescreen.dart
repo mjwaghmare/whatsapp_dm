@@ -78,15 +78,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         keyboardType: TextInputType.phone,
                         style: const TextStyle(fontSize: 15),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(top: 10.0),
+                          contentPadding: const EdgeInsets.only(top: 10.0, left: 10.0),
                           hintText: '0123456789',
-                          prefixIcon: Padding(
-                            padding: const EdgeInsets.only(left: 10.0, top: 10.0),
-                            child: FaIcon(
-                              FontAwesomeIcons.whatsapp,
-                              color: Constant.whatsappGreen,
-                            ),
-                          ),
+                          // prefixIcon: Padding(
+                          //   padding: const EdgeInsets.only(left: 10.0),
+                          //   child: Icon(
+                          //     FontAwesomeIcons.whatsapp,
+                          //     color: Constant.whatsappGreen,
+                          //   ),
+                          // ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Constant.whatsappGreen, width: 2.0),
                             borderRadius: BorderRadius.circular(8.0),
