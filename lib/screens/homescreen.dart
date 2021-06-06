@@ -32,13 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Constant.whatsappGreen.withOpacity(0.8),
-        centerTitle: true,
-        title: const Text('WhatsApp DM '),
-      ),
       body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         shrinkWrap: true,
         children: [
           Column(
@@ -58,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     CountryCodePicker(
-                      padding: const EdgeInsets.only(bottom: 19.0),
+                      padding: const EdgeInsets.only(bottom: 20.0),
                       initialSelection: 'IN',
                       showCountryOnly: true,
                       favorite: const ['+91', 'IN'],
@@ -72,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       flagWidth: 40,
                     ),
                     const SizedBox(
-                      width: 10.0,
+                      width: 5.0,
                     ),
                     Expanded(
                       flex: 2,
@@ -81,11 +76,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller: wpNumber,
                         cursorColor: Constant.black,
                         keyboardType: TextInputType.phone,
+                        style: const TextStyle(fontSize: 15),
                         decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.only(top: 8.0),
+                          contentPadding: const EdgeInsets.only(top: 10.0),
                           hintText: '0123456789',
                           prefixIcon: Padding(
-                            padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                            padding: const EdgeInsets.only(left: 10.0, top: 10.0),
                             child: FaIcon(
                               FontAwesomeIcons.whatsapp,
                               color: Constant.whatsappGreen,
@@ -107,13 +103,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 12),
                 alignment: Alignment.bottomCenter,
                 child: TextField(
                   controller: wpMessage,
                   cursorColor: Constant.black,
                   keyboardType: TextInputType.multiline,
                   maxLines: 4,
+                  style: const TextStyle(fontSize: 15),
                   decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Constant.whatsappGreen, width: 2.0),
@@ -128,9 +125,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               Wrap(
                 alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 spacing: 5.0,
                 children: [
                   for (int i = 0; i < CustomData.customMessages.length; i++) ...{
@@ -142,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Chip(
                         label: Text(
                           CustomData.customMessages[i],
-                          style: TextStyle(color: Constant.black, fontWeight: FontWeight.w600),
+                          style: TextStyle(color: Constant.darkBlue),
                         ),
                         backgroundColor: Constant.whatsappGreen.withOpacity(0.8),
                       ),
@@ -150,40 +148,46 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
               const Divider(),
+              const SizedBox(height: 10),
               Center(
                 child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Constant.whatsappGreen,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
+                  width: MediaQuery.of(context).size.width * 0.47,
+                  child: Center(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Constant.whatsappGreen,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4),
+                        ),
                       ),
-                    ),
-                    onPressed: () {
-                      launchWhatsApp(
-                        _countryCode,
-                        wpNumber.text.trim().toString(),
-                        wpMessage.text.toString(),
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
-                        FaIcon(
-                          FontAwesomeIcons.whatsapp,
-                        ),
-                        SizedBox(
-                          width: 10.0,
-                        ),
-                        Expanded(
-                          child: Text(
-                            'Send Message',
+                      onPressed: () {
+                        launchWhatsApp(
+                          _countryCode,
+                          wpNumber.text.trim().toString(),
+                          wpMessage.text.toString(),
+                        );
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          SizedBox(
+                            width: 5.0,
                           ),
-                        ),
-                      ],
+                          FaIcon(
+                            FontAwesomeIcons.whatsapp,
+                          ),
+                          SizedBox(
+                            width: 15.0,
+                          ),
+                          Expanded(
+                            child: Text(
+                              'Send Message',
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

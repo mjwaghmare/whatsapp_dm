@@ -15,21 +15,33 @@ dependencies:
   country_code_picker:
   url_launcher:
   motion_tab_bar:
+  google_fonts: ^2.1.0
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_native_splash: ^1.1.8+4
+  flutter_launcher_icons:
+
+flutter_icons:
+  image_path: "assets/whatsapp.png"
+  android: true
+  ios: true
+
+
+# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/whatsapp.png
+  color_dark: "#1a1a1a"
+  image_dark: assets/whatsapp.png
+  android: true
+  ios: true
+
+
 flutter:
   uses-material-design: true
   assets:
     - assets/
-
-
-
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic

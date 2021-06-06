@@ -15,11 +15,12 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
   MotionTabController _tabController;
+  int selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _tabController = MotionTabController(initialIndex: 1, vsync: this);
+    _tabController = MotionTabController(initialIndex: selectedIndex, vsync: this);
   }
 
   @override
@@ -30,27 +31,34 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
 
   List<Widget> screens = [
     HomeScreen(),
-    const AccountScreen(),
-    HomeScreen(),
+    const CallLogs(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_tabController.index],
-      bottomNavigationBar: MotionTabBar(
-        labels: const ["Chat", "Home", "Dashboard"],
-        initialSelectedTab: "Chat",
-        tabIconColor: Constant.whatsappGreen,
-        tabSelectedColor: Constant.whatsappGreen,
-        onTabItemSelected: (int value) {
-          setState(() {
-            _tabController.index = value;
-          });
-        },
-        icons: const [FontAwesomeIcons.whatsapp, Icons.home, Icons.account_circle_outlined],
-        textStyle: TextStyle(color: Constant.black),
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Constant.whatsappGreen.withOpacity(0.8),
+          centerTitle: true,
+          title: const Text('WhatsApp DM '),
+        ),
+        body: screens[selectedIndex],
+        bottomNavigationBar: MotionTabBar(
+          labels: const ["Chat", "Call Logs"],
+          initialSelectedTab: "Chat",
+          tabIconColor: Constant.whatsappGreen,
+          tabSelectedColor: Constant.whatsappGreen,
+          onTabItemSelected: (int value) {
+            setState(() {
+              selectedIndex = value;
+            });
+          },
+          icons: const [
+            FontAwesomeIcons.whatsapp,
+            Icons.call_outlined,
+            // Icons.account_circle_outlined
+          ],
+          textStyle: TextStyle(color: Constant.black),
+        ));
   }
 }
