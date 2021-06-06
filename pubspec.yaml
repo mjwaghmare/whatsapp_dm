@@ -25,13 +25,15 @@ dev_dependencies:
   flutter_native_splash: ^1.1.8+4
   flutter_launcher_icons:
 
+# run in terminal => flutter pub run flutter_launcher_icons:main
+
 flutter_icons:
   image_path: "assets/whatsapp.png"
   android: true
   ios: true
 
 
-# run: flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
+# run in terminal => flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
 flutter_native_splash:
   color: "#ffffff"
   image: assets/whatsapp.png
