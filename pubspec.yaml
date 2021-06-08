@@ -16,6 +16,9 @@ dependencies:
   url_launcher:
   motion_tab_bar:
   google_fonts: ^2.1.0
+  call_log:
+  permission_handler:
+  intl:
 
 
 dev_dependencies:
@@ -26,7 +29,6 @@ dev_dependencies:
   flutter_launcher_icons:
 
 # run in terminal => flutter pub run flutter_launcher_icons:main
-
 flutter_icons:
   image_path: "assets/whatsapp.png"
   android: true
