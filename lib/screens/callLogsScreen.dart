@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:whatsapp_dm/models/call_logs.dart';
+import 'package:whatsapp_dm/utils/common.dart';
 
 class CallLogs extends StatefulWidget {
   const CallLogs({Key key}) : super(key: key);
@@ -70,26 +71,34 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
             FutureBuilder(
                 future: logs,
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  if (snapshot.connectionState == ConnectionState.done && snapshot.hasData) {
                     final Iterable<CallLogEntry> entries = snapshot.data;
                     return Expanded(
                       child: ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             child: Card(
+                              elevation: 2.0,
                               child: ListTile(
+                                isThreeLine: true,
                                 leading: cl.getCallIcon(entries.elementAt(index).callType),
                                 title: cl.getTitle(entries.elementAt(index)),
                                 subtitle: Text(
-                                    "${cl.formatDate(DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp))}\n${cl.getTime(entries.elementAt(index).duration)}"),
-                                isThreeLine: true,
+                                    "${cl.formatDate(DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp))}" /*\n${cl.getTime(entries.elementAt(index).duration)}*/),
                                 trailing: IconButton(
                                     icon: const Icon(
                                       FontAwesomeIcons.whatsapp,
                                     ),
                                     color: Colors.green,
                                     onPressed: () {
-                                      // cl.call(entries.elementAt(index).number);
+                                      CommonMethods.whatsAppWithoutMsg(
+                                        context,
+                                        entries.elementAt(index).number,
+                                      );
                                     }),
                               ),
                             ),
@@ -99,7 +108,7 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
                       ),
                     );
                   } else {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: Text('No Call Logs Available'));
                   }
                 })
           else

@@ -1,8 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_dm/utils/colors.dart';
+import 'package:whatsapp_dm/utils/common.dart';
 import 'package:whatsapp_dm/utils/customMessages.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,23 +22,23 @@ class _HomeScreenState extends State<HomeScreen> {
     wpMessage.dispose();
   }
 
-  void launchWhatsApp(String countryCode, String number, String message) async {
-    const snackBar = SnackBar(content: Text('Check the number or Try Again!!'));
-    final String url = 'whatsapp://send?phone=$countryCode$number&text=$message';
-    await canLaunch(url) ? launch(url) : ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    wpMessage.clear();
-  }
+  // void launchWhatsApp(String countryCode, String number, String message) async {
+  //   const snackBar = SnackBar(content: Text('Check the number or Try Again!!'));
+  //   final String url = 'whatsapp://send?phone=$countryCode$number&text=$message';
+  //   await canLaunch(url) ? launch(url) : ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Focus.of(context).unfocus(),
-      child: Scaffold(
-        body: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          shrinkWrap: true,
-          children: [
-            Column(
+    return Scaffold(
+      body: ListView(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        shrinkWrap: true,
+        children: [
+          GestureDetector(
+            onTap: () => Focus.of(context).unfocus(),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
@@ -82,13 +82,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: InputDecoration(
                             contentPadding: const EdgeInsets.only(top: 10.0, left: 10.0),
                             hintText: '0123456789',
-                            // prefixIcon: Padding(
-                            //   padding: const EdgeInsets.only(left: 10.0),
-                            //   child: Icon(
-                            //     FontAwesomeIcons.whatsapp,
-                            //     color: Constant.whatsappGreen,
-                            //   ),
-                            // ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Constant.whatsappGreen, width: 2.0),
                               borderRadius: BorderRadius.circular(8.0),
@@ -165,11 +158,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         onPressed: () {
-                          launchWhatsApp(
+                          CommonMethods.whatsAppWithMsg(
+                            context,
                             _countryCode,
                             wpNumber.text.trim().toString(),
                             wpMessage.text.toString(),
                           );
+                          wpMessage.clear();
                         },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -196,8 +191,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

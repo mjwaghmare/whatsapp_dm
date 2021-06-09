@@ -5,23 +5,36 @@ import 'package:intl/intl.dart';
 class Logs {
   getCallIcon(CallType callType) {
     switch (callType) {
-      case CallType.outgoing:
-        return const CircleAvatar(
-          maxRadius: 30,
-          foregroundColor: Colors.green,
-          backgroundColor: Colors.greenAccent,
+      case CallType.rejected:
+        return const Icon(
+          Icons.call_missed,
+          color: Colors.orange,
         );
-      case CallType.missed:
-        return CircleAvatar(
-          maxRadius: 30,
-          foregroundColor: Colors.red[400],
-          backgroundColor: Colors.red[400],
+      case CallType.blocked:
+        return const Icon(
+          Icons.block_rounded,
+          color: Colors.red,
+        );
+      case CallType.outgoing:
+        return const Icon(
+          Icons.call_made_rounded,
+          color: Colors.black,
+        );
+      case CallType.incoming:
+        return const Icon(
+          Icons.call_received_rounded,
+          color: Colors.green,
+        );
+      //rejected
+      case CallType.unknown:
+        return const Icon(
+          Icons.call_missed,
+          color: Colors.red,
         );
       default:
-        return CircleAvatar(
-          maxRadius: 30,
-          foregroundColor: Colors.indigo[700],
-          backgroundColor: Colors.indigo[700],
+        return const Icon(
+          Icons.call_received_rounded,
+          color: Colors.blueGrey,
         );
     }
   }
@@ -31,7 +44,7 @@ class Logs {
   }
 
   String formatDate(DateTime dt) {
-    return DateFormat('d-MMM-y H:m:s').format(dt);
+    return DateFormat('d-MMM-y\nh:m:s').format(dt);
   }
 
   getTitle(CallLogEntry entry) {
