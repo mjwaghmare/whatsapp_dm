@@ -17,7 +17,7 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
   bool permission = false;
 
   // PhoneTextField pt = new PhoneTextField();
-  Logs cl = Logs();
+  Logs callLogs = Logs();
 
   Future<Iterable<CallLogEntry>> logs;
 
@@ -38,7 +38,7 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-    logs = cl.getCallLogs();
+    logs = callLogs.getCallLogs();
     checkLogsPermission();
   }
 
@@ -54,7 +54,7 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
 
     if (AppLifecycleState.resumed == state) {
       setState(() {
-        logs = cl.getCallLogs();
+        logs = callLogs.getCallLogs();
       });
     }
   }
@@ -80,15 +80,23 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
                       child: ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                         itemBuilder: (context, index) {
-                          return GestureDetector(
-                            child: Card(
-                              elevation: 2.0,
+                          return Card(
+                            elevation: 2.0,
+                            child: InkWell(
+                              onTap: () => CommonMethods.whatsAppWithoutMsg(
+                                context,
+                                entries.elementAt(index).number,
+                              ),
                               child: ListTile(
+                                minLeadingWidth: 0,
                                 isThreeLine: true,
-                                leading: cl.getCallIcon(entries.elementAt(index).callType),
-                                title: cl.getTitle(entries.elementAt(index)),
-                                subtitle: Text(
-                                    "${cl.formatDate(DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp))}" /*\n${cl.getTime(entries.elementAt(index).duration)}*/),
+                                leading: callLogs.getCallIcon(entries.elementAt(index).callType),
+                                title: callLogs.getTitle(
+                                  entries.elementAt(index),
+                                ),
+                                subtitle: Text("${callLogs.formatDate(
+                                  DateTime.fromMillisecondsSinceEpoch(entries.elementAt(index).timestamp),
+                                )}"),
                                 trailing: IconButton(
                                     icon: const Icon(
                                       FontAwesomeIcons.whatsapp,
@@ -112,9 +120,7 @@ class _CallLogsState extends State<CallLogs> with WidgetsBindingObserver {
                   }
                 })
           else
-            const Center(
-              child: Text('Check  permissions'),
-            )
+            const Center(child: Text('Check for the permissions'))
         ],
       ),
     );

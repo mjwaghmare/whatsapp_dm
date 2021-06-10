@@ -22,13 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     wpMessage.dispose();
   }
 
-  // void launchWhatsApp(String countryCode, String number, String message) async {
-  //   const snackBar = SnackBar(content: Text('Check the number or Try Again!!'));
-  //   final String url = 'whatsapp://send?phone=$countryCode$number&text=$message';
-  //   await canLaunch(url) ? launch(url) : ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  //
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

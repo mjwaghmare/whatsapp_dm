@@ -6,35 +6,53 @@ class Logs {
   getCallIcon(CallType callType) {
     switch (callType) {
       case CallType.rejected:
-        return const Icon(
-          Icons.call_missed,
-          color: Colors.orange,
+        return IconButton(
+          icon: const Icon(
+            Icons.call_missed,
+            color: Colors.orange,
+          ),
+          onPressed: () {},
         );
       case CallType.blocked:
-        return const Icon(
-          Icons.block_rounded,
-          color: Colors.red,
+        return IconButton(
+          icon: const Icon(
+            Icons.block_rounded,
+            color: Colors.red,
+          ),
+          onPressed: () {},
         );
       case CallType.outgoing:
-        return const Icon(
-          Icons.call_made_rounded,
-          color: Colors.black,
+        return IconButton(
+          icon: const Icon(
+            Icons.call_made_rounded,
+            color: Colors.black,
+          ),
+          onPressed: () {},
         );
       case CallType.incoming:
-        return const Icon(
-          Icons.call_received_rounded,
-          color: Colors.green,
+        return IconButton(
+          icon: const Icon(
+            Icons.call_received_rounded,
+            color: Colors.green,
+          ),
+          onPressed: () {},
         );
       //rejected
       case CallType.unknown:
-        return const Icon(
-          Icons.call_missed,
-          color: Colors.red,
+        return IconButton(
+          icon: const Icon(
+            Icons.call_missed,
+            color: Colors.red,
+          ),
+          onPressed: () {},
         );
       default:
-        return const Icon(
-          Icons.call_received_rounded,
-          color: Colors.blueGrey,
+        return IconButton(
+          onPressed: () {},
+          icon: const Icon(
+            Icons.call_received_rounded,
+            color: Colors.blueGrey,
+          ),
         );
     }
   }
@@ -44,7 +62,7 @@ class Logs {
   }
 
   String formatDate(DateTime dt) {
-    return DateFormat('d-MMM-y\nh:m:s').format(dt);
+    return DateFormat('dd-MMM-y\nh:m a').format(dt);
   }
 
   getTitle(CallLogEntry entry) {

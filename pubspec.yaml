@@ -19,6 +19,7 @@ dependencies:
   call_log:
   permission_handler:
   intl:
+  flashy_tab_bar:
 
 
 dev_dependencies:
