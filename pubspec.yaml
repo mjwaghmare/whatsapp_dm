@@ -14,12 +14,13 @@ dependencies:
   font_awesome_flutter:
   country_code_picker:
   url_launcher:
-  motion_tab_bar:
   google_fonts: ^2.1.0
   call_log:
   permission_handler:
   intl:
   flashy_tab_bar:
+  animated_theme_switcher: ^2.0.1
+  day_night_switch:
 
 
 dev_dependencies:

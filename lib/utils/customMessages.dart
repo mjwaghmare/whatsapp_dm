@@ -3,10 +3,10 @@ class CustomData {
 
   static List<String> customMessages = [
     'Hi',
-    "What\'s up?",
+    "What's up?",
     'Hello',
     'How Are You?',
-    "Sorry. Who\'s this??",
+    "Sorry. Who's this??",
     'Good Morning',
     'Good Afternoon',
     'Good Evening',

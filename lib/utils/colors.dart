@@ -11,4 +11,37 @@ class Constant {
 
   //Fonts
   static String poppins = 'Poppins';
+
+  // theme: ThemeData(
+  // accentColor: const Color(0xff25D366),
+  // brightness: Brightness.light,
+  // visualDensity: VisualDensity.adaptivePlatformDensity,
+  // textTheme: GoogleFonts.nunitoSansTextTheme(
+  // Theme.of(context).textTheme,
+  // ),
+  // ),
+
+  static final lightTheme = ThemeData(
+    brightness: Brightness.light,
+    primaryColor: const Color(0xff25D366),
+    accentColor: const Color(0xff05102E),
+    hintColor: const Color(0xff05102E),
+    textTheme: const TextTheme(
+      headline6: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+  );
+
+  static final darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    primaryColor: const Color(0xff25D366),
+    accentColor: const Color(0xff05102E),
+    hintColor: const Color(0xff25D366),
+    textTheme: const TextTheme(
+      headline6: TextStyle(
+        color: Colors.white,
+      ),
+    ),
+  );
 }
