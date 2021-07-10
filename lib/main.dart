@@ -6,6 +6,8 @@ import 'package:whatsapp_dm/screens/screens.dart';
 import 'package:whatsapp_dm/utils/colors.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // ErrorWidget.builder = (error) => AppErrorWidget(error: error);
   runApp(MyApp());
 }
 
@@ -26,6 +28,30 @@ class MyApp extends StatelessWidget {
           theme: initTheme,
         );
       },
+    );
+  }
+}
+
+class AppErrorWidget extends StatelessWidget {
+  final FlutterErrorDetails error;
+
+  const AppErrorWidget({Key key, @required this.error}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.red.withOpacity(0.2),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          child: Center(
+            child: Text(
+              error.exceptionAsString(),
+              style: const TextStyle(fontSize: 24),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
